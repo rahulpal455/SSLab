@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      S.S(Shree Shayam) Pathology Lab — Blood Tests & Home Sample Collection
+    </title>
+    <meta
+      name="description"
+      content="S.S Pathology Lab offers reliable blood tests, health checkups, and home sample collection. Book an appointment online. NABL-inspired quality, fast reports."
+    />
+    <meta name="theme-color" content="#0f7fbf" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230f7fbf'/><path d='M50 10c15 18 22 31 22 42a22 22 0 1 1-44 0c0-11 7-24 22-42z' fill='white'/></svg>"
+    />
+
+    <!-- ====== Base Styles ====== -->
+    <style>
+      :root {
+        --primary: #0f7fbf; /* medical blue */
+        --primary-600: #0c6aa1;
+        --accent: #22b573; /* healthcare green */
+        --bg: #f7fbff; /* soft background */
+        --card: #ffffff;
+        --text: #0f172a; /* slate-900 */
+        --muted: #475569; /* slate-600 */
+        --ring: 0 0 0 3px rgba(15, 127, 191, 0.2);
+        --radius: 16px;
+        --shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Inter,
+          Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.55;
+      }
+      a {
+        color: var(--primary);
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .container {
+        width: min(1200px, 92%);
+        margin-inline: auto;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.1rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--primary-600);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        background: #fff;
+        border-color: #dbeafe;
+        color: var(--primary);
+      }
+      .btn-outline:hover {
+        border-color: var(--primary);
+        box-shadow: var(--ring);
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.85rem;
+        background: #e6f3fb;
+        color: #085b8a;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+      }
+
+      /* Header */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #eef2ff;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+      .logo svg {
+        width: 28px;
+        height: 28px;
+      }
+      nav ul {
+        display: flex;
+        gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav a {
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        color: var(--muted);
+      }
+      nav a:hover {
+        background: #eef6ff;
+        color: var(--primary);
+      }
+      .mobile-toggle {
+        display: none;
+      }
+
+      /* Hero */
+      .hero {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 2rem;
+        align-items: center;
+        padding: 3rem 0;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 2.5vw, 3rem);
+        line-height: 1.15;
+        margin: 0.5rem 0;
+      }
+      .hero p {
+        color: var(--muted);
+        max-width: 60ch;
+      }
+      .hero-card {
+        background: linear-gradient(180deg, #ffffff, #f3fbff);
+        border: 1px solid #e2e8f0;
+        padding: 1.5rem;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+
+      /* Sections */
+      section {
+        padding: 2.8rem 0;
+      }
+      .section-title {
+        font-size: 1.6rem;
+        margin: 0 0 0.6rem;
+      }
+      .muted {
+        color: var(--muted);
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 1rem;
+      }
+      .card h3 {
+        margin: 0.2rem 0 0.4rem;
+      }
+      .card p {
+        margin: 0.2rem 0;
+        color: var(--muted);
+      }
+      .icon {
+        width: 26px;
+        height: 26px;
+      }
+
+      /* How it works */
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .step {
+        position: relative;
+      }
+      .step::after {
+        content: "→";
+        position: absolute;
+        right: -0.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #94a3b8;
+      }
+      .step:last-child::after {
+        display: none;
+      }
+
+      /* Pricing */
+      .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .price-card {
+        border: 2px solid #e2e8f0;
+      }
+      .price {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+
+      /* Appointment Form */
+      .form-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.2rem;
+      }
+      form {
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: var(--radius);
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+      }
+      .field {
+        display: grid;
+        gap: 0.35rem;
+        margin: 0.6rem 0;
+      }
+      label {
+        font-weight: 600;
+      }
+      .req::after {
+        content: "*";
+        color: #ef4444;
+        margin-left: 0.2rem;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #cbd5e1;
+        border-radius: 12px;
+        outline: none;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        box-shadow: var(--ring);
+        border-color: #93c5fd;
+      }
+      .two-col {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+      }
+      .hint {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .success {
+        display: none;
+        border: 1px solid #86efac;
+        background: #ecfdf5;
+        color: #166534;
+        padding: 0.8rem;
+        border-radius: 12px;
+        margin: 0.6rem 0;
+      }
+
+      /* Aside card */
+      .contact-card {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: var(--radius);
+        padding: 1rem;
+        box-shadow: var(--shadow);
+      }
+      .contact-list {
+        display: grid;
+        gap: 0.6rem;
+        margin: 0.6rem 0;
+      }
+
+      /* Doctors & Certs */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      /* FAQ */
+      details {
+        background: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 0.8rem;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      /* Footer */
+      footer {
+        padding: 1.6rem 0;
+        border-top: 1px solid #e5e7eb;
+        color: var(--muted);
+      }
+
+      /* Responsive */
+      @media (max-width: 960px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .form-wrap {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .pricing,
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 640px) {
+        nav ul {
+          display: none;
+        }
+        .mobile-toggle {
+          display: inline-flex;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+        .pricing,
+        .cards {
+          grid-template-columns: 1fr;
+        }
+        .steps {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ====== Header ====== -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="#top" aria-label="S.S Pathology Lab home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M12 2c3.5 4.2 5.2 7.2 5.2 9.8a5.2 5.2 0 1 1-10.4 0C6.8 9.2 8.5 6.2 12 2Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span>S.S Pathology Lab</span>
+        </a>
+        <nav aria-label="Primary">
+          <button
+            class="btn mobile-toggle"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+            id="mobileBtn"
+          >
+            Menu
+          </button>
+          <ul id="desktopMenu">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#packages">Health Packages</a></li>
+            <li><a href="#doctors">Doctors</a></li>
+            <li><a href="#certs">Certifications</a></li>
+            <li><a href="#book">Book</a></li>
+            <li><a href="Photo">Photo</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <a class="btn btn-primary" href="#book">Book Now</a>
+      </div>
+      <div class="container" id="mobileMenu" hidden>
+        <ul
+          style="
+            list-style: none;
+            padding: 0 0.5rem 1rem;
+            margin: 0;
+            display: grid;
+            gap: 0.4rem;
+          "
+        >
+          <li><a href="#services">Services</a></li>
+          <li><a href="#packages">Health Packages</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#book">Book</a></li>
+           <li><a href="Photo">Photo</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ====== Hero ====== -->
+    <main id="top" class="container">
+      <section class="hero">
+        <div>
+          <span class="badge">Home Sample Collection • Fast Reports</span>
+          <h1>Reliable Blood Tests & Health Checkups</h1>
+          <p>
+            Certified processes, trained phlebotomists, and hygienic collection
+            for your peace of mind. Book a home visit or walk into our lab.
+          </p>
+          <div
+            style="
+              display: flex;
+              gap: 0.6rem;
+              flex-wrap: wrap;
+              margin-top: 0.6rem;
+            "
+          >
+            <a class="btn btn-primary" href="#book">Book Home Collection</a>
+            <a class="btn btn-outline" href="tel:+91-9165825345"
+              >Call: +91 9165825345</a
+            >
+          </div>
+          <div class="trust">
+            <span class="badge" title="Quality Focus">✅ NABL-inspired QC</span>
+            <span class="badge" title="Secure Reports">🔐 Digital Reports</span>
+            <span class="badge" title="Home Visit">🏠 Home Collection</span>
+            <span class="badge" title="Fast Turnaround"
+              >⚡ Same-Day Reports*</span
+            >
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-grid">
+            <div class="card">
+              <div class="badge">Popular</div>
+              <h3>Complete Blood Count (CBC)</h3>
+              <p>₹ 299 • 1 day TAT</p>
+            </div>
+            <div class="card">
+              <div class="badge">Recommended</div>
+              <h3>Full Body Checkup (Basic)</h3>
+              <p>₹ 1499 • 45 tests</p>
+            </div>
+            <div class="card">
+              <h3>HbA1c</h3>
+              <p>₹ 550 • Diabetes monitoring</p>
+            </div>
+            <div class="card">
+              <h3>Lipid Profile</h3>
+              <p>₹ 599 • Heart health</p>
+            </div>
+          </div>
+          <p class="hint" style="margin-top: 0.6rem">
+            *TAT may vary by test and collection time.
+          </p>
+        </div>
+      </section>
+
+      <!-- ====== Services ====== -->
+      <section id="services">
+        <h2 class="section-title">Services We Offer</h2>
+        <p class="muted">
+          From routine blood tests to complete health packages—choose what you
+          need.
+        </p>
+        <div class="cards" style="margin-top: 1rem">
+          <article class="card">
+            <h3>Blood Tests</h3>
+            <p>
+              CBC, MP, Lipid, LFT, KFT, Thyroid, Vitamin D/B12, HbA1c, and more.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Health Checkups</h3>
+            <p>
+              Basic, Advanced, and Executive packages tailored for all ages.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Home Sample Collection</h3>
+            <p>
+              Trained staff visit your location with sterile kits and proper
+              storage.
+            </p>
+          </article>
+        </div>
+        <div class="cards" style="margin-top: 1rem">
+          <article class="card">
+            <h3>Doctor Consultation</h3>
+            <p>Free basic consultation with select packages.</p>
+          </article>
+          <article class="card">
+            <h3>Fast Digital Reports</h3>
+            <p>Secure portal access and WhatsApp delivery.</p>
+          </article>
+          <article class="card">
+            <h3>Corporate & Camps</h3>
+            <p>On-site health camps and corporate tie-ups available.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ====== How It Works ====== -->
+      <section>
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps" style="margin-top: 0.8rem">
+          <div class="card step"><strong>1.</strong> Choose test/package</div>
+          <div class="card step"><strong>2.</strong> Select time slot</div>
+          <div class="card step"><strong>3.</strong> Sample collection</div>
+          <div class="card step"><strong>4.</strong> Get digital report</div>
+        </div>
+      </section>
+
+      <!-- ====== Packages / Pricing ====== -->
+      <section id="packages">
+        <h2 class="section-title">Popular Health Packages</h2>
+        <div class="pricing" style="margin-top: 0.8rem">
+          <div class="card price-card">
+            <h3>Basic Health Check</h3>
+            <p class="muted">CBC, FBS, LFT, KFT, Lipid, Urine Routine</p>
+            <div class="price">₹ 1,499</div>
+            <a
+              class="btn btn-outline"
+              href="#book"
+              data-package="Basic Health Check"
+              >Choose</a
+            >
+          </div>
+          <div class="card price-card" style="border-color: var(--primary)">
+            <h3>Advanced Health Check</h3>
+            <p class="muted">
+              All Basic + Thyroid, Vitamin D & B12, Iron Studies
+            </p>
+            <div class="price">₹ 2,999</div>
+            <a
+              class="btn btn-primary"
+              href="#book"
+              data-package="Advanced Health Check"
+              >Choose</a
+            >
+          </div>
+          <div class="card price-card">
+            <h3>Executive Health Check</h3>
+            <p class="muted">Advanced + CRP, HbA1c, Calcium, Uric Acid</p>
+            <div class="price">₹ 4,499</div>
+            <a
+              class="btn btn-outline"
+              href="#book"
+              data-package="Executive Health Check"
+              >Choose</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== Doctors & Certifications ====== -->
+      <section id="doctors">
+        <div class="grid-2">
+          <div>
+            <h2 class="section-title">Our Medical Team</h2>
+            <article
+              class="card"
+              style="display: flex; gap: 1rem; align-items: flex-start"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="4"
+                  stroke="#0f7fbf"
+                  stroke-width="2"
+                />
+                <path
+                  d="M4 20c1.8-4 6-6 8-6s6.2 2 8 6"
+                  stroke="#0f7fbf"
+                  stroke-width="2"
+                />
+              </svg>
+              <div>
+                <h3>Dr. A. Sharma</h3>
+                <p class="muted">
+                  MD Pathology • Reg. No. MP-12345 • 10+ yrs exp.
+                </p>
+                <p>
+                  Oversees lab quality and result validation. Available for
+                  consultation on reports.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div id="certs">
+            <h2 class="section-title">Quality & Certifications</h2>
+            <div class="cards">
+              <div class="card">
+                <h3>NABL-aligned SOPs</h3>
+                <p class="muted">
+                  Internal QC and external proficiency testing.
+                </p>
+              </div>
+              <div class="card">
+                <h3>ISO 9001 Practices</h3>
+                <p class="muted">Process-driven, documented workflows.</p>
+              </div>
+              <div class="card">
+                <h3>Trained Phlebotomists</h3>
+                <p class="muted">Aseptic collection & cold-chain management.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== Appointment ====== -->
+      <section id="book">
+        <h2 class="section-title">Book an Appointment</h2>
+        <p class="muted">
+          Home sample collection or lab visit—pick what suits you. We will
+          confirm over call/WhatsApp.
+        </p>
+        <div class="form-wrap" style="margin-top: 0.8rem">
+          <form id="bookingForm" novalidate>
+            <div class="success" id="successMsg">
+              ✅ Your request was prepared. Click
+              <a id="waLink" href="#" target="_blank" rel="noopener">here</a> to
+              send details on WhatsApp, or check confirmation below.
+            </div>
+
+            <div class="two-col">
+              <div class="field">
+                <label for="fullName" class="req">Full Name</label>
+                <input
+                  id="fullName"
+                  name="fullName"
+                  required
+                  placeholder="e.g., Rahul Pal"
+                />
+              </div>
+              <div class="field">
+                <label for="phone" class="req">Mobile Number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  pattern="[0-9]{10}"
+                  required
+                  placeholder="10-digit number"
+                />
+                <div class="hint">WhatsApp preferred for updates</div>
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div class="field">
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="optional"
+                />
+              </div>
+              <div class="field">
+                <label for="mode" class="req">Visit Type</label>
+                <select id="mode" name="mode" required>
+                  <option value="Home Collection">Home Collection</option>
+                  <option value="Lab Visit">Lab Visit</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="addressWrap" class="field">
+              <label for="address" class="req">Address</label>
+              <textarea
+                id="address"
+                name="address"
+                rows="2"
+                placeholder="House No., Area, City"
+              ></textarea>
+            </div>
+
+            <div class="two-col">
+              <div class="field">
+                <label for="test" class="req">Test / Package</label>
+                <select id="test" name="test" required>
+                  <option value="CBC">CBC</option>
+                  <option value="HbA1c">HbA1c</option>
+                  <option value="Lipid Profile">Lipid Profile</option>
+                  <option value="Basic Health Check">Basic Health Check</option>
+                  <option value="Advanced Health Check">
+                    Advanced Health Check
+                  </option>
+                  <option value="Executive Health Check">
+                    Executive Health Check
+                  </option>
+                  <option value="Other">Other (type in notes)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="date" class="req">Preferred Date</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+            </div>
+
+            <div class="two-col">
+              <div class="field">
+                <label for="slot" class="req">Time Slot</label>
+                <select id="slot" name="slot" required>
+                  <option>07:00–09:00</option>
+                  <option>09:00–11:00</option>
+                  <option>11:00–13:00</option>
+                  <option>16:00–18:00</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="fasting">Fasting Required?</label>
+                <select id="fasting" name="fasting">
+                  <option value="Unknown">Not sure</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="notes">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="2"
+                placeholder="Any additional info"
+              ></textarea>
+            </div>
+
+            <div class="field">
+              <label
+                ><input type="checkbox" id="consent" required /> I agree to be
+                contacted via phone/WhatsApp for confirmation.</label
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                align-items: center;
+              "
+            >
+              <button class="btn btn-primary" type="submit">
+                Submit Request
+              </button>
+              <a class="btn btn-outline" href="tel:+91-9165825345">Call Lab</a>
+              <span class="hint"
+                >You will review & send details on WhatsApp before final
+                booking.</span
+              >
+            </div>
+          </form>
+
+          <aside class="contact-card">
+            <h3>Contact & Timings</h3>
+            <div class="contact-list">
+              <div>
+                📍 <strong>Address:</strong> Garhakota BUS Stand Patriya road
+                Beshakiya ke baju se garhakota, Sagar, MP
+              </div>
+              <div>
+                📞 <strong>Phone:</strong>
+                <a href="tel:+91-9165825345">+91 9165825345</a>
+              </div>
+              <div>
+                ✉️ <strong>Email:</strong>
+                <a href="mailto:S.S@S.S lab.in">S.S@S.S lab.in</a>
+              </div>
+              <div>⏰ <strong>Hours:</strong> Mon–Sun, 7:00 AM – 8:00 PM</div>
+            </div>
+            <iframe
+              title="Lab Location Map"
+              style="width: 100%; height: 260px; border: 0; border-radius: 12px"
+              loading="lazy"
+              allowfullscreen
+              src="https://www.google.com/maps?q=Garhakota&output=embed"
+            ></iframe>
+            <div
+              style="
+                display: flex;
+                gap: 0.6rem;
+                margin-top: 0.8rem;
+                flex-wrap: wrap;
+              "
+            >
+              <a
+                class="btn btn-outline"
+                href="https://wa.me/919165825345"
+                target="_blank"
+                rel="noopener"
+                >WhatsApp</a
+              >
+              <a class="btn btn-outline" href="mailto:hello@subhidhalab.in"
+                >Email Us</a
+              >
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ====== Testimonials & FAQ ====== -->
+      <section>
+        <div class="grid-3">
+          <div>
+            <h2 class="section-title">What Patients Say</h2>
+            <div class="cards">
+              <blockquote class="card">
+                “Quick home collection and reports on WhatsApp. Very
+                professional!” — <strong>Priya K.</strong>
+              </blockquote>
+              <blockquote class="card">
+                “Clean lab and helpful staff. Highly recommended.” —
+                <strong>Aman S.</strong>
+              </blockquote>
+            </div>
+          </div>
+          <div>
+            <h2 class="section-title">FAQ</h2>
+            <div style="display: grid; gap: 0.6rem">
+              <details>
+                <summary>Do I need fasting for tests?</summary>
+                <p class="muted">
+                  Some tests (like FBS, Lipid) require 8–12 hours fasting. If
+                  unsure, choose “Not sure” and our team will guide you.
+                </p>
+              </details>
+              <details>
+                <summary>How do I get reports?</summary>
+                <p class="muted">
+                  Reports are sent securely via portal/WhatsApp and are also
+                  available for pickup.
+                </p>
+              </details>
+              <details>
+                <summary>What areas do you cover for home collection?</summary>
+                <p class="muted">
+                  Most areas within city limits. Share your address—we will
+                  confirm coverage.
+                </p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div
+        class="container"
+        style="
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          flex-wrap: wrap;
+        "
+      >
+        <div>
+          © <span id="year"></span> S.S(Shree Shayam) Pathology Lab. All rights
+          reserved.
+        </div>
+        <div>Made with care • <a href="#book">Book now</a></div>
+      </div>
+    </footer>
+
+    <!-- ====== Structured Data ====== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalOrganization",
+        "name": "S.S Pathology Lab",
+        "url": "https://example.com",
+        "telephone": "+91-9165825345",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Garhakota",
+          "addressLocality": "Sagar",
+          "addressRegion": "MP",
+          "postalCode": "470229",
+          "addressCountry": "IN"
+        },
+        "medicalSpecialty": ["Pathology", "DiagnosticLab"],
+        "openingHours": "Mo-Su 07:00-20:00",
+        "department": [
+          { "@type": "MedicalClinic", "name": "Sample Collection" }
+        ]
+      }
+    </script>
+
+    <!-- ====== Scripts ====== -->
+    <script>
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById("mobileBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      mobileBtn?.addEventListener("click", () => {
+        const open = mobileMenu.hasAttribute("hidden") ? false : true;
+        mobileMenu.toggleAttribute("hidden");
+        mobileBtn.setAttribute("aria-expanded", String(!open));
+      });
+
+      // Prefill date to tomorrow
+      const dateInput = document.getElementById("date");
+      const tomorrow = new Date(Date.now() + 86400000);
+      dateInput.valueAsDate = tomorrow;
+      dateInput.min = new Date().toISOString().split("T")[0];
+
+      // Address show/hide depending on mode
+      const mode = document.getElementById("mode");
+      const addressWrap = document.getElementById("addressWrap");
+      function toggleAddress() {
+        const needAddress = mode.value === "Home Collection";
+        addressWrap.style.display = needAddress ? "block" : "none";
+        document.getElementById("address").required = needAddress;
+      }
+      mode.addEventListener("change", toggleAddress);
+      toggleAddress();
+
+      // Package choose buttons pre-select
+      document.querySelectorAll("[data-package]")?.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.getElementById("test").value =
+            btn.getAttribute("data-package");
+        });
+      });
+
+      // Booking form handling (client-side only)
+      const form = document.getElementById("bookingForm");
+      const success = document.getElementById("successMsg");
+      const waLink = document.getElementById("waLink");
+
+      function sanitize(s) {
+        return String(s || "").trim();
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Basic validation
+        if (!form.reportValidity()) return;
+
+        const data = {
+          fullName: sanitize(form.fullName.value),
+          phone: sanitize(form.phone.value),
+          email: sanitize(form.email.value),
+          mode: form.mode.value,
+          address: sanitize(form.address.value),
+          test: form.test.value,
+          date: form.date.value,
+          slot: form.slot.value,
+          fasting: form.fasting.value,
+          notes: sanitize(form.notes.value),
+        };
+
+        // Save locally for convenience
+        try {
+          localStorage.setItem("s.s:lastBooking", JSON.stringify(data));
+        } catch (err) {}
+
+        // Build WhatsApp message
+        const msg =
+          `Booking Request — S.S Lab%0a` +
+          `Name: ${encodeURIComponent(data.fullName)}%0a` +
+          `Phone: ${encodeURIComponent(data.phone)}%0a` +
+          (data.email ? `Email: ${encodeURIComponent(data.email)}%0a` : ``) +
+          `Type: ${encodeURIComponent(data.mode)}%0a` +
+          (data.mode === "Home Collection"
+            ? `Address: ${encodeURIComponent(data.address)}%0a`
+            : ``) +
+          `Test/Package: ${encodeURIComponent(data.test)}%0a` +
+          `Date: ${encodeURIComponent(data.date)}%0a` +
+          `Time: ${encodeURIComponent(data.slot)}%0a` +
+          `Fasting: ${encodeURIComponent(data.fasting)}%0a` +
+          (data.notes ? `Notes: ${encodeURIComponent(data.notes)}%0a` : ``) +
+          `Consent: Yes`;
+
+        const waNumber = "919165825345"; // change to lab WhatsApp number
+        const url = `https://wa.me/${waNumber}?text=${msg}`;
+        waLink.href = url;
+
+        success.style.display = "block";
+        success.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
